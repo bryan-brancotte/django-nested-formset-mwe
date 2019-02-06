@@ -1,0 +1,16 @@
+{% extends "myapp/formset-nested-formset.html" %}
+
+{%block title%}
+{% if object is None %}
+Creating a promotion along with its students and their addresses
+{%else%}
+{% if formset is None %}
+Updating a promotion
+{%else%}
+Updating students for promotion {{object.year}} <i>{{object.name}}</i>
+{%endif%}
+{%endif%}
+{%endblock title%}
+
+{% block parent_kind%}student{%endblock%}
+{% block nested_kind%}address{%endblock%}

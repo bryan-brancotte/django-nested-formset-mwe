@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{%block extrajs%}
+<script src="{% static '/js/formset-nested-formset.js'%}"></script>
+{%endblock extrajs%}
+
+{%block extracss%}
+<link rel="stylesheet" href="{% static '/css/formset-nested-formset.css' %}">
+{%endblock extracss%}
+
+
+{%block content%}
+<div class="col-12 mb-4 formset-container">
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {{form|crispy}}
+        {% if formset is not None %}
+            {{ formset.management_form }}
+            {{ formset.non_form_errors }}
+            {% for form in formset.forms %}
+            {% include "myapp/formset-nested-form.html" with form=form nested_forms=form.nested.forms nested_form=None add_another_nested_one="Add another one" parent_prefix=formset.prefix %}
+        {% endfor %}
+        <div class="col-12 mb-4">
+            <button
+                    type="button"
+                    class="btn btn-default"
+                    onclick="add_form_to_nested_formset(this,'{{formset.prefix}}');"
+            >Add another {%block parent_kind%}one{%endblock%}
+            </button>
+            <button type="submit" class="btn btn-success float-right">Save all</button>
+        </div>
+        {%endif%}
+    </form>
+    {% block emptyform %}
+        {%if formset is not None %}
+        <div class="card mb-4 bg-warning">
+            <div class="card-header">
+                Here is the empty formset, usually you have a css code somewhere saying
+                <code>.empty_form{display:none;}</code>
+            </div>
+            <div class="card-body empty_form" style="display:noneXXX">
+                {% include "myapp/formset-nested-form.html" with form=formset.empty_form nested_forms=formset.empty_form.nested.forms nested_form=formset.empty_form.nested.empty_form add_another_nested_one="Add another one" parent_prefix=formset.prefix %}
+            </div>
+        </div>
+        {%endif%}
+    {% endblock emptyform%}
+</div>
+{%endblock content%}
+

@@ -1,0 +1,8 @@
+{% extends "myapp/formset-nested-formset.html" %}
+{%block title%}
+Updating students for promotion {{promotion.year}} <i>{{promotion.name}}</i>
+{%endblock title%}
+
+
+{% block parent_kind%}student{%endblock%}
+{% block nested_kind%}address{%endblock%}

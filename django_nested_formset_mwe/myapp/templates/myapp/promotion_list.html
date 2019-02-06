@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{%block title%}
+Promotions
+{%endblock title%}
+{%block content%}
+{% for o in object_list %}
+<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+    <div class="card">
+        <a href="{% url 'myapp:promotion-detail' pk=o.pk%}" class="card-header">{{o}}</a>
+        <div class="card-body">
+            Has {{o.students.count}} students
+        </div>
+    </div>
+</div>
+<div class="col-12 mb-4">
+    <a role="button" class="btn btn-info" href="{% url 'myapp:promotion-create' %}">
+        Create a new promotion
+    </a>
+</div>
+{% endfor %}
+{%endblock content%}

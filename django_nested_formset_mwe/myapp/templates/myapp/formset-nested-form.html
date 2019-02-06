@@ -1,0 +1,35 @@
+{% load crispy_forms_tags %}
+
+<div class="card mb-4">
+    <div class="card-body formset-item">
+        {{ form|crispy }}
+
+        {% if form.nested %}
+        {{ form.nested.management_form }}
+        {{ form.nested.non_form_errors }}
+
+        {% if nested_form %}
+        <div class="card mb-4 formset-nested-item">
+            <div class="card-body mb-4">
+                {{ nested_form|crispy }}
+            </div>
+        </div>
+        {% endif %}
+        {% for nested_form in form.nested.forms %}
+        <div class="card mb-4 formset-nested-item">
+            <div class="card-body mb-4">
+                {{ nested_form|crispy }}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="card mb-4">
+            <button
+                    type="button"
+                    class="btn btn-default float-left"
+                    onclick="add_nested_form_to_nested_formset(this,'{{form.nested.prefix}}','{{parent_prefix}}');"
+            >{{add_another_nested_one}}
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</div>

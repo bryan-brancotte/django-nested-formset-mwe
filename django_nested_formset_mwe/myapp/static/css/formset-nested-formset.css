@@ -1,0 +1,4 @@
+.delete-checked .form-group:not(.delete-host),
+.delete-checked .formset-nested-container{
+    display:none
+}
