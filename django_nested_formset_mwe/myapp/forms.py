@@ -114,13 +114,13 @@ class BaseStudentFormset(BaseInlineNestedFormSet):
 
             name = form.cleaned_data['first_name'] + "__" + form.cleaned_data['last_name']
             if name in names:
-                raise forms.ValidationError(
-                    _("Student must be distinct. Incriminated entry:'%(last_name)s %(first_name)s'") %
-                    dict(
-                        first_name=form.cleaned_data['first_name'],
-                        last_name=form.cleaned_data['last_name']
-                    )
+                message = _("Student must be distinct. Incriminated entry:'%(first_name)s %(last_name)s'") % dict(
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name']
                 )
+                self._non_form_errors.append(message)
+                form.errors.setdefault('first_name', []).append(message)
+                form.errors.setdefault('last_name', []).append(message)
             names.add(name)
 
 
