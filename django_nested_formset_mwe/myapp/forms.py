@@ -108,6 +108,11 @@ class BaseStudentFormset(BaseInlineNestedFormSet):
         for form in self.forms:
             if form.cleaned_data.get("DELETE", False):
                 continue
+
+            # if the form is empty
+            if not (form.has_changed() or 'first_name' in form.cleaned_data or 'last_name' in form.cleaned_data):
+                continue
+
             name = form.cleaned_data['first_name'] + "__" + form.cleaned_data['last_name']
             if name in names:
                 raise forms.ValidationError(
