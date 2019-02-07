@@ -1,7 +1,9 @@
 .formset-item.delete-checked .form-group:not(.formset-item-delete-host),
 .formset-item.delete-checked .formset-nested-item,
+.formset-item.delete-checked>.alert,
 .formset-nested-item.delete-checked .form-group:not(.formset-item-delete-host),
-.formset-nested-item.delete-checked .formset-nested-item{
+.formset-nested-item.delete-checked .formset-nested-item,
+.formset-nested-item.delete-checked>.alert{
     display:none
 }
 

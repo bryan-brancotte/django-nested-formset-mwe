@@ -53,3 +53,7 @@ function delete_button_clicked(source) {
         $(item).removeClass("delete-checked");
     }
 }
+
+window.onload = function() {
+	$(".formset-item-delete:checked").each(function(i,o){delete_button_clicked(o);});
+};

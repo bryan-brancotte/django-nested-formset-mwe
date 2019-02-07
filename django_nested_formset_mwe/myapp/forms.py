@@ -16,6 +16,7 @@ class BaseInlineNestedFormSet(forms.BaseInlineFormSet):
         super().add_fields(form, index)
         delete_field = form.fields.pop('DELETE')
         delete_field.widget.attrs["onclick"] = "delete_button_clicked(this)"
+        delete_field.widget.attrs["class"] = delete_field.widget.attrs.get("class", "") + " formset-item-delete"
         form.fields = OrderedDict(
             itertools.chain([('DELETE', delete_field)], form.fields.items())
         )
