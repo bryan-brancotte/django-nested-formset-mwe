@@ -1,6 +1,8 @@
 """
 iPPI-DB django forms
 """
+import itertools
+from collections import OrderedDict
 
 from django import forms
 from django.forms import ModelForm, inlineformset_factory

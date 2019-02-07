@@ -1,4 +1,14 @@
-.delete-checked .form-group:not(.delete-host),
-.delete-checked .formset-nested-container{
+.formset-item.delete-checked .form-group:not(.formset-item-delete-host),
+.formset-item.delete-checked .formset-nested-item,
+.formset-nested-item.delete-checked .form-group:not(.formset-item-delete-host),
+.formset-nested-item.delete-checked .formset-nested-item{
     display:none
+}
+
+
+.formset-item.delete-checked,
+.formset-nested-item.delete-checked{
+    opacity:0.3;
+    overflow: hidden;
+    max-height: 5em;
 }

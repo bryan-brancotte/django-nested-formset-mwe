@@ -39,3 +39,17 @@ function add_nested_form_to_nested_formset(source, prefix, parent_prefix){
     input_total.val(parseInt(input_total.val())+1);
     return empty_form;
 }
+
+function delete_button_clicked(source) {
+    let item = $(source).closest(".form-group");
+    $(item).addClass("formset-item-delete-host");
+    item = $(item).closest(".formset-nested-item");
+    if (item.length==0){
+        item = $(source).closest(".formset-item");
+    }
+    if ($(source).prop("checked")){
+        $(item).addClass("delete-checked");
+    }else{
+        $(item).removeClass("delete-checked");
+    }
+}
