@@ -88,11 +88,11 @@ class BaseStudentFormset(BaseInlineNestedFormSet):
             instance=form.instance,
             data=form.data if form.is_bound else None,
             files=form.files if form.is_bound else None,
+            # set the prefix to distinguish the nested formset one from the other.
             prefix='addresses-%s-%s' % (
                 form.prefix,
                 AddressInlineFormset.get_default_prefix()
             ),
-            # queryset=models.Address.objects.filter(student=form.instance)
         )
 
     def full_clean(self):
