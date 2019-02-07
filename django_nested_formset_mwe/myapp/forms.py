@@ -71,9 +71,12 @@ AddressInlineFormset = inlineformset_factory(
     model=models.Address,
     form=AddressForm,
     formset=BaseInlineNestedFormSet,
-    extra=0,
-    min_num=1,
-    validate_min=True,
+    # fields='__all__',
+    extra=1,
+    # min_num=1,# using the min_num is tempting, but with an nested inlined formset it does not work:
+    # # it wants to have at least on address which is obsiouly empty when we check the DELETE of its empty student
+    # # it make the formset being invalid. Prefer an extra=1, an in case of server side validation.
+    # validate_min=True,
     can_delete=True,
 )
 
@@ -122,9 +125,9 @@ StudentInlineFormset = inlineformset_factory(
     parent_model=models.Promotion,
     model=models.Student,
     formset=BaseStudentFormset,
-    form=StudentForm,
+    fields='__all__',
     extra=0,
-    min_num=1,
+    min_num=1,  # here you can use it
     validate_min=True,
     can_delete=True,
 )
