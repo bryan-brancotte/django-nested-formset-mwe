@@ -10,6 +10,13 @@ from myapp import models
 
 
 class BaseInlineNestedFormSet(forms.BaseInlineFormSet):
+    def add_fields(self, form, index):
+        super().add_fields(form, index)
+        delete_field = form.fields.pop('DELETE')
+        delete_field.widget.attrs["onclick"] = "delete_button_clicked(this)"
+        form.fields = OrderedDict(
+            itertools.chain([('DELETE', delete_field)], form.fields.items())
+        )
 
     def is_valid(self):
         result = super().is_valid()
@@ -62,6 +69,7 @@ AddressInlineFormset = inlineformset_factory(
     parent_model=models.Student,
     model=models.Address,
     form=AddressForm,
+    formset=BaseInlineNestedFormSet,
     extra=0,
     min_num=1,
     validate_min=True,

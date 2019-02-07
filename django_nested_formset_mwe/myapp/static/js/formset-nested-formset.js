@@ -20,7 +20,7 @@ function add_nested_form_to_nested_formset(source, prefix, parent_prefix){
         .find(".formset-nested-item")[0]
         .outerHTML;
 
-    current_item_name = $(source).closest(".formset-item").children()[0].name;
+    current_item_name = $(source).closest(".formset-item").children("input")[0].name;
     current_item_name = current_item_name.substring(parent_prefix.length+1,current_item_name.indexOf('-',parent_prefix.length+1));
     empty_form_as_str = empty_form_as_str.replace(
         new RegExp(parent_prefix+"-__prefix__","g"),
