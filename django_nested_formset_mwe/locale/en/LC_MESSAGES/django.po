@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 10:29+0000\n"
+"POT-Creation-Date: 2019-02-07 15:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,15 @@ msgstr ""
 msgid "English"
 msgstr ""
 
+msgid "DELETE_label"
+msgstr "Remove it"
+
+msgid "DELETE_help_text"
+msgstr "Delete the object if it exists, or do not save it otherwise."
+
 #, python-format
 msgid ""
-"Student must be distinct. Incriminated entry:'%(last_name)s %(first_name)s'"
+"Student must be distinct. Incriminated entry:'%(first_name)s %(last_name)s'"
 msgstr ""
 
 msgid "year_label"

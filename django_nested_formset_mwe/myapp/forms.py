@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 from django import forms
 from django.forms import ModelForm, inlineformset_factory
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 
 from myapp import models
 
@@ -17,6 +17,10 @@ class BaseInlineNestedFormSet(forms.BaseInlineFormSet):
         delete_field = form.fields.pop('DELETE')
         delete_field.widget.attrs["onclick"] = "delete_button_clicked(this)"
         delete_field.widget.attrs["class"] = delete_field.widget.attrs.get("class", "") + " formset-item-delete"
+        delete_field.label = _("DELETE_label")
+        delete_help_text = ugettext("DELETE_help_text")
+        if delete_help_text != "DELETE_help_text":
+            delete_field.help_text = delete_help_text
         form.fields = OrderedDict(
             itertools.chain([('DELETE', delete_field)], form.fields.items())
         )
