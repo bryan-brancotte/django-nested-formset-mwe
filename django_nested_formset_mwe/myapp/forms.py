@@ -51,20 +51,13 @@ class AddressForm(ModelForm):
         model = models.Address
         fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["full_address"].widget.attrs["required"] = True
-
-
-class StudentForm(ModelForm):
-    class Meta:
-        model = models.Student
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["first_name"].widget.attrs["required"] = True
-        self.fields["last_name"].widget.attrs["required"] = True
+    # Even if we set the field to required in the model they are not in the html form. Its an intended feature of the
+    # formset which allow you to add new formset item but not use it, and also use the DELETE checkbox
+    # without having the browser indicating the user that the field must be field.
+    # uncomment hereafter and you will see
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields["full_address"].widget.attrs["required"] = True
 
 
 class PromotionForm(ModelForm):
