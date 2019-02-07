@@ -30,6 +30,7 @@ class BaseInlineNestedFormSet(forms.BaseInlineFormSet):
 
         if self.is_bound:
             for form in self.forms:
+                result = result and form.is_valid()
                 if hasattr(form, 'nested'):
                     result = result and form.nested.is_valid()
 
