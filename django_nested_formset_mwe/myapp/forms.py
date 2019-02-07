@@ -95,10 +95,13 @@ class BaseStudentFormset(BaseInlineNestedFormSet):
             # queryset=models.Address.objects.filter(student=form.instance)
         )
 
-    def clean(self):
-        """Checks that no two articles have the same title."""
-        if any(self.errors):
-            # Don't bother validating the formset unless each form is valid on its own
+    def full_clean(self):
+        """
+        An example of validation across the whole formset, here no homonym.
+        """
+
+        super().full_clean()
+        if not self.is_bound:  # Stop further processing.
             return
         names = set()
         for form in self.forms:
