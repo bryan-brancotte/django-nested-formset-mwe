@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load my_bootstrap_tags %}
 {% load static %}
 
 {%block extrajs%}
@@ -18,7 +19,7 @@
         {{form|crispy}}
         {% if formset is not None %}
             {{ formset.management_form }}
-            {{ formset.non_form_errors }}
+            {{ formset.non_form_errors|as_bootstrap_alert }}
             {% for form in formset.forms %}
             {% include "myapp/formset-nested-form.html" with form=form nested_forms=form.nested.forms nested_form=None add_another_nested_one="Add another one" parent_prefix=formset.prefix %}
         {% endfor %}
